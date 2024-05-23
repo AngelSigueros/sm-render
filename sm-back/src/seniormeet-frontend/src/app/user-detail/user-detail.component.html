@@ -1,0 +1,100 @@
+@if (user) {
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 mt-3">
+      @if (isAdmin) {
+        <button [routerLink]="['/users', user.id, 'update']" title='Editar' class="btn btn-lg btn-outline-secondary me-2 d-inline-block text-primary">
+          <i class="bi bi-pencil ms-2"></i>
+             
+      </button>
+      }
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4 mt-12">
+
+      <div class="card my-4">
+        <div class="card-body text-center">
+          <img class="rounded-circle img-fluid" [src]="'https://test-sm.onrender.com/files/' + user.photoUrl" alt="{{user.firstName}}" style="width: 200px;">
+
+          <h5 class="my-1">{{user.firstName}} </h5>
+          <p class="text-muted mb-3">{{user.lastName}}</p>
+          <p class="text-muted mb-1">{{user.ciudad}}</p>
+          <div class="d-flex justify-content-center mb-2">
+            
+          </div>
+        </div>
+      </div>
+     
+    </div>
+
+    <div class="col-lg-8 mt-3">
+      <div class="card ">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0">Nombre:</p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{user.firstName}} {{user.lastName}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0">Email:</p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{user.email}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0">Teléfono:</p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{user.phone}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0">Fecha de nacimiento:</p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{user.fechaNacimiento}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0">Ciudad:</p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{user.ciudad}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+}
+@else {
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 mt-3">
+      <small class="text-danger">El usuario no existe</small>
+    </div>
+  </div>
+</div>
+}

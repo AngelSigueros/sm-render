@@ -1,0 +1,51 @@
+
+@if (hobby) {
+<section style="background-color: #eee">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#">Hobby</a></li>
+            <li class="breadcrumb-item"><a href="#">Descripción</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Descripción Hobby
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+          <div class="card-body text-center">
+          <img
+            src="https://test-sm.onrender.com/files/{{hobby.photoUrl}}" alt = "imagen Hobby"
+            class="rounded-circle img-fluid"
+            style="width: 150px"
+          />
+          <h2 class="my-3">{{ hobby.name }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+
+      <div class="card">
+        <h5 class="card-header text-center">{{ hobby.name }}</h5>
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <p class="card-text">
+            {{ hobby.description }}
+          </p>
+
+          <div style="text-align: center; margin-top: 50px;">
+            <button class="btn btn-primary" justify conter [routerLink]="['/groups']">Ver Grupos</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}

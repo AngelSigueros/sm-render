@@ -1,0 +1,136 @@
+@if (post) {
+  <section class = "card-body container-fluid" style="background-color: #eee;">
+
+    <div>
+      <button title='Volver' (click)='goBack();' class="btn btn-lg btn-outline-secondary d-inline-block mb-2"><i class="bi bi-box-arrow-left text-primary"></i></button>
+      <!-- <button [routerLink]="['/posts']" title='Volver' class="btn btn-lg btn-outline-secondary d-inline-block mb-2"><i class="bi bi-box-arrow-left text-primary"></i></button> -->
+    </div>
+
+    <div class="text-center">
+      <div class="col-lg-12 ">
+        <div class="card mb-4">
+          <div class="card-body">
+                     
+            @if(post.photoUrl && post.photoUrl!=''){
+              <img src="https://test-sm.onrender.com/files/{{post.photoUrl}}" alt="avatar"
+                              class="img-fluid mt-3" style="width: 650px;">
+            }
+
+            @if(post.videoUrl && post.videoUrl != ''){
+              <!-- <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item mt-3" [width]="315" [height]="150" [src]="getSafeUrl(post.videoUrl)" frameborder="0" allowfullscreen></iframe>
+              </div> -->
+              <div class="card mb-3 mt-3">
+                 <youtube-player
+                videoId={{post.videoUrl}}
+                suggestedQuality="highres"
+                width="460"
+                height="300"
+                showBeforeIframeApiLoads="true"></youtube-player>
+              </div>
+            }
+
+            <!-- <h5 class="my-3">{{post.videoUrl}}</h5> -->
+            
+            <h5 class="my-3 text muted small">{{formatDateTime(post.date.toString())}}</h5>
+            
+            
+                    
+          <div class="card-body shadow rounded">
+              <h2 class="my-3 fw-bold">{{post.content}}</h2>
+            
+            <div class="text-center">
+              <div class="d-flex flex-column align-items-center">
+                  <img src="https://test-sm.onrender.com/files/{{post.user.photoUrl}}" alt="avatar"
+                      class="img-fluid text" style="width: 150px;">
+                  <h5 class="my-1">Publicado por: {{post.user.firstName}} {{post.user.lastName}}</h5>
+              </div>
+            </div>
+
+            <div class="my-1 d-inline-block">
+              @if (isAdmin ||isPostfromUser()){
+                <button [routerLink]="['/posts', post.id, 'update']" title='Editar' class="btn btn-sm btn-outline-secondary me-2 d-inline-block text-primary"><i class="bi bi-pencil"></i></button>
+                <button class="btn btn-sm btn-outline-secondary me-2 d-inline-block text-primary" title='Borrar' (click)="deletePost(post.id)"><i class="bi bi-trash"></i></button>
+              }
+
+              
+
+              @if(likes.length > 0) {
+                <h5 class="my-3 d-inline-block me-2 small fw-bold">{{likes.length}} <button title='Me Gusta' class="btn btn-sm btn-outline-secondary tex-primary" (click)="addlike()"><i class="bi bi-heart-fill text-primary"></i></button></h5>
+              } @else {
+                <button title='Me Gusta' class="btn btn-sm btn-outline-secondary d-inline-block me-2" (click)="addlike()"><i class="bi bi-heart-fill text-danger"></i></button>
+              }
+              
+              @if(saves.length > 0) {
+                <h5 class="my-3 d-inline-block me-2 small fw-bold">{{saves.length}} <button title='Guardar' class="btn btn-sm btn-outline-secondary" (click)="addsave()"><i class="bi bi-floppy-fill text-primary"></i></button></h5>
+              } @else {
+                <button title='Guardar' class="btn btn-sm btn-outline-secondary d-inline-block me-2" (click)="addsave()"><i class="bi bi-floppy text-primary"></i></button>
+              }
+
+
+            
+              @if (comments.length >0) {
+                <h5 class="my-3 d-inline-block me-2 small fw-bold">{{comments.length}} <button title='Ver/Ocultar Comentarios' class="btn btn-sm btn-outline-secondary text-primary" (click)="toggleComments()"><i class="bi bi-chat-text-fill"></i></button></h5>
+                
+                <div [style.display]="mostrarComments ? 'block' : 'none'" class="mb-3">
+                  @for(comment of comments; track comment){
+                    <div class="card-body shadow rounded">
+                      <h5 class="my-3">{{comment.user.firstName}} - {{comment.content}}</h5>
+                      <h5 class="my-3 text muted small">{{formatDateTime(post.date.toString())}}</h5>
+                    </div>
+                    
+                  }
+                  
+                </div>
+              } @else{
+               <h5 class="my-3 d-inline-block me-2"><i class="bi bi-chat-text"></i></h5>
+              }
+            </div>
+            <div class="text-center my-3">
+              <div class="d-flex flex-column align-items-center">
+                  @if(post.group){
+                    <img src="https://test-sm.onrender.com/files/{{post.group.photoUrl}}" alt="avatar"
+                      class="img-fluid" style="width: 300px;">
+                    <h5 class="my-3">Publicado en: {{post.group.title}}</h5>
+                  }
+                  
+              </div>
+
+          </div>
+          
+          
+        </div>
+
+            
+            
+            
+            
+
+            
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <form [formGroup]="commentForm" (ngSubmit)="saveComments()">
+                  <div class="form-floating mb-1">
+                    <input type="text" class="form-control" id="content" placeholder="Escribe tu comentario" formControlName="content">
+                    <label for="content center">Añade un comentario</label>
+                  </div>
+                  <button class="btn btn-outline-secondary text-primary" title='Guardar Comentario' type="submit"><i class="bi bi-save"></i></button>
+                </form>
+              </div>
+            </div>
+            
+
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+
+    
+        
+  </section>
+
+ 
+}
+

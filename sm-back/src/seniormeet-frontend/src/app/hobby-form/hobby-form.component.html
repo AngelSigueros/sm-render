@@ -1,0 +1,51 @@
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <h1 class="my-5">Introducir datos del nuevo Hobby</h1>
+
+      <form [formGroup]="hobbyForm" (ngSubmit)="save()">
+
+        <input type="hidden" formControlName="id">
+
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control"
+          id="name" formControlName="name">
+          <label for="name">Nombre Hobby</label>
+        </div>
+
+
+        <input type="hidden" formControlName="photoUrl">
+
+        <div class="input-group mb-3">
+          <input type="file" class="form-control" id="photo" (change)="onFileChange($event)">
+        </div>
+
+        <div class="form-floating mb-3">
+          <textarea class="form-control"
+            placeholder="Leave a comment here" id="description" formControlName="description" style="min-height: 120px;">
+          </textarea>
+          <label for="description">Descripción</label>
+        </div>
+
+        <button class="w-100 btn btn-primary btn-lg mb-5 mt-5" type="submit">Guardar</button>
+
+      </form>
+
+    </div>
+    <div class="col-lg-4">
+
+      @if (photoPreview) {
+        <h2 class="my-5">Previsualización foto</h2>
+        <img class="img-fluid" [src]="photoPreview">
+      }
+      @if (!photoPreview && hobby?.photoUrl) {
+        <h2 class="my-5">Previsualización foto</h2>
+        <img class="img-fluid" [src]="'https://test-sm.onrender.com/files/' + hobby?.photoUrl">
+      }
+
+    </div>
+  </div>
+</div>
