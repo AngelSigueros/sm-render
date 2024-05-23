@@ -39,7 +39,7 @@ export class UserLoginComponent {
       password: this.loginForm.get('password')?.value ?? '',
     };
 
-    const url = 'https://test-sm.onrender.com/user/login';
+    const url = 'https://sm-render.onrender.com/user/login';
     this.httpClient.post<Token>(url, login).subscribe({
       next: (response) => {
         this.authService.saveToken(response.token);

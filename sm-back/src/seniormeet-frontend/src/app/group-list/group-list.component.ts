@@ -24,9 +24,9 @@ export class GroupListComponent implements OnInit{
   }
   
   loadGroups(){
-    this.http.get<User>("https://test-sm.onrender.com/user/account").subscribe(u => this.currentUser=u);
+    this.http.get<User>("https://sm-render.onrender.com/user/account").subscribe(u => this.currentUser=u);
 
-    this.http.get<Group[]>("https://test-sm.onrender.com/groups").subscribe(g=>this.groups=g);
+    this.http.get<Group[]>("https://sm-render.onrender.com/groups").subscribe(g=>this.groups=g);
   }
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class GroupListComponent implements OnInit{
   }
   addGroupToUser(group: Group) {
     if (this.currentUser) {
-      this.http.post('https://test-sm.onrender.com/user/' + this.currentUser.id + '/groups/' + group.id, '').subscribe(s => {
+      this.http.post('https://sm-render.onrender.com/user/' + this.currentUser.id + '/groups/' + group.id, '').subscribe(s => {
         //this.router.navigate(['/groups']);
         this.loadGroups();
       });
@@ -48,7 +48,7 @@ export class GroupListComponent implements OnInit{
 
    removeGroupFromUser(group: Group){
     if (this.currentUser) {
-      this.http.delete('https://test-sm.onrender.com/user/' + this.currentUser.id + '/groups/' + group.id).subscribe(s => {
+      this.http.delete('https://sm-render.onrender.com/user/' + this.currentUser.id + '/groups/' + group.id).subscribe(s => {
         //this.router.navigate(['/groups']);
         this.loadGroups();
       });
@@ -77,7 +77,7 @@ export class GroupListComponent implements OnInit{
   }
 
   deleteGroup(groupId: number){
-    const url = "https://test-sm.onrender.com/groups/"+groupId;
+    const url = "https://sm-render.onrender.com/groups/"+groupId;
     this.http.delete<Boolean>(url).subscribe(b => {
       this.loadGroups();
     });

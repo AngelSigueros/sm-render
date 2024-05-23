@@ -26,7 +26,7 @@ export class CommentFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private httpClient: HttpClient){}
   
   ngOnInit(): void {
-    this.httpClient.get<User>('https://test-sm.onrender.com/user/account').subscribe( u => {this.currentUser = u});
+    this.httpClient.get<User>('https://sm-render.onrender.com/user/account').subscribe( u => {this.currentUser = u});
   }
 
 
@@ -44,7 +44,7 @@ export class CommentFormComponent implements OnInit {
     }
     console.log(commentToSave);
 
-    const url = 'https://test-sm.onrender.com/comment';
+    const url = 'https://sm-render.onrender.com/comment';
     this.httpClient.post<Comment>(url, commentToSave).subscribe(comment => console.log(comment));
   }
 

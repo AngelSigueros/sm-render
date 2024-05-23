@@ -43,7 +43,7 @@ export class HobbyFormComponent implements OnInit {
 
 
 
-      this.httpClient.get<Hobby>('https://test-sm.onrender.com/hobbies/' + id).subscribe(hobby => {
+      this.httpClient.get<Hobby>('https://sm-render.onrender.com/hobbies/' + id).subscribe(hobby => {
 
         this.hobbyForm.reset(hobby);
 
@@ -107,13 +107,13 @@ export class HobbyFormComponent implements OnInit {
 
     if (this.isUpdate) {
 
-      this.httpClient.put<Hobby>('https://test-sm.onrender.com/hobbies/' + this.hobby?.id, formData)
+      this.httpClient.put<Hobby>('https://sm-render.onrender.com/hobbies/' + this.hobby?.id, formData)
 
     .subscribe(group => this.navigateToList());
 
     } else {
 
-    this.httpClient.post<Hobby>('https://test-sm.onrender.com/hobbies', formData)
+    this.httpClient.post<Hobby>('https://sm-render.onrender.com/hobbies', formData)
 
     .subscribe(hobby=> this.navigateToList());
 

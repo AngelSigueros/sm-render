@@ -30,7 +30,7 @@ export class UserDetailComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((params) => {
       this.http
-        .get<User>('https://test-sm.onrender.com/user/' + params['id'])
+        .get<User>('https://sm-render.onrender.com/user/' + params['id'])
         .subscribe({
           next: (u) => {
             this.user = u;

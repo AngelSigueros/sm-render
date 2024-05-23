@@ -43,12 +43,12 @@ export class GroupDetailComponent implements OnInit{
   }
 
   loadGroupDetail(){
-    this.http.get<User>("https://test-sm.onrender.com/user/account").subscribe(u => this.currentUser=u);
+    this.http.get<User>("https://sm-render.onrender.com/user/account").subscribe(u => this.currentUser=u);
 
     this.activatedRoute.params.subscribe(params=> {
-     this.http.get<Group>("https://test-sm.onrender.com/groups/" + params['id']).subscribe(g=>{
+     this.http.get<Group>("https://sm-render.onrender.com/groups/" + params['id']).subscribe(g=>{
        this.group=g;
-       this.http.get<Post[]>('https://test-sm.onrender.com/post/group/' + this.group.id).subscribe(ps => this.posts=ps)
+       this.http.get<Post[]>('https://sm-render.onrender.com/post/group/' + this.group.id).subscribe(ps => this.posts=ps)
        console.log(this.group);
      })
     });
@@ -68,7 +68,7 @@ export class GroupDetailComponent implements OnInit{
 
   removeGroupFromUser(group: Group){
     if (this.currentUser) {
-      this.http.delete('https://test-sm.onrender.com/user/' + this.currentUser.id + '/groups/' + group.id).subscribe(s => {
+      this.http.delete('https://sm-render.onrender.com/user/' + this.currentUser.id + '/groups/' + group.id).subscribe(s => {
         //this.router.navigate(['/groups']);
         this.loadGroupDetail();
       });
@@ -80,7 +80,7 @@ export class GroupDetailComponent implements OnInit{
 
   addGroupToUser(group: Group) {
     if (this.currentUser) {
-      this.http.post('https://test-sm.onrender.com/user/' + this.currentUser.id + '/groups/' + group.id, '').subscribe(s => {
+      this.http.post('https://sm-render.onrender.com/user/' + this.currentUser.id + '/groups/' + group.id, '').subscribe(s => {
         //this.router.navigate(['/groups']);
         this.loadGroupDetail();
       });
@@ -110,14 +110,14 @@ export class GroupDetailComponent implements OnInit{
       date: date
     }
 
-    const urlLike = 'https://test-sm.onrender.com/post/'+postToSave?.id +'/add-save/'+this.currentUser?.id;
+    const urlLike = 'https://sm-render.onrender.com/post/'+postToSave?.id +'/add-save/'+this.currentUser?.id;
     this.http.post<Boolean>(urlLike,interactionToSave).subscribe(b => this.loadGroupDetail());
   }
 
   inicializarLikesAndSaves(): void {
     const requests = this.posts.map(post => {
-      const likesRequest = this.http.get<Interaction[]>("https://test-sm.onrender.com/post/"+post.id+"/interactions/likes");
-      const savesRequest = this.http.get<Interaction[]>("https://test-sm.onrender.com/post/"+post.id+"/interactions/saves");
+      const likesRequest = this.http.get<Interaction[]>("https://sm-render.onrender.com/post/"+post.id+"/interactions/likes");
+      const savesRequest = this.http.get<Interaction[]>("https://sm-render.onrender.com/post/"+post.id+"/interactions/saves");
       return forkJoin([likesRequest, savesRequest]);
     });
 
@@ -146,12 +146,12 @@ export class GroupDetailComponent implements OnInit{
       date: date
     }
 
-    const urlLike = 'https://test-sm.onrender.com/post/'+postToLike?.id+'/add-like/'+this.currentUser?.id;
+    const urlLike = 'https://sm-render.onrender.com/post/'+postToLike?.id+'/add-like/'+this.currentUser?.id;
     this.http.post<Boolean>(urlLike,interactionToSave).subscribe(b => this.loadGroupDetail());
   }
 
   deletePost(postId: number){
-    const url = "https://test-sm.onrender.com/post/"+postId;
+    const url = "https://sm-render.onrender.com/post/"+postId;
     this.http.delete<Boolean>(url).subscribe(b => {
       this.loadGroupDetail();
     });

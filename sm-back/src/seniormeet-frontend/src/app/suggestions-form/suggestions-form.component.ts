@@ -44,7 +44,7 @@ export class SuggestionsFormComponent implements OnInit {
     // http client post para enviar el formData a backend
     console.log(suggestion);
 
-    this.httpClient.post<Suggestions>('https://test-sm.onrender.com/suggestions', suggestion)
+    this.httpClient.post<Suggestions>('https://sm-render.onrender.com/suggestions', suggestion)
       .subscribe(suggestions => {
         //this.id = undefined;
         //this.name = undefined;

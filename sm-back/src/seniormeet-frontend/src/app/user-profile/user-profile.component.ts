@@ -48,7 +48,7 @@ export class UserProfileComponent implements OnInit {
   uploadUser() {
     console.log('uploadUser');
     // if (this.userForm.valid) {
-      let uploadUrl = 'https://test-sm.onrender.com/user';
+      let uploadUrl = 'https://sm-render.onrender.com/user';
 
       console.log('uploadUrl '+ uploadUrl);
 
@@ -72,7 +72,7 @@ export class UserProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       console.log(params['id']);
       this.http
-        .get<User>('https://test-sm.onrender.com/user/' + params['id'])
+        .get<User>('https://sm-render.onrender.com/user/' + params['id'])
         .subscribe((u) => {
           this.user = u;
           console.log(this.user);

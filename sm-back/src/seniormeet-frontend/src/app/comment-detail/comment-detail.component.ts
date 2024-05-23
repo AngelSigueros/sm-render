@@ -20,7 +20,7 @@ export class CommentDetailComponent implements OnInit{
     console.log('CommentDetailComponent');
 
     this.activatedRoute.params.subscribe(params=> {
-      this.http.get<Comment>("https://test-sm.onrender.com/comment/" + params['id']).subscribe(c=>{
+      this.http.get<Comment>("https://sm-render.onrender.com/comment/" + params['id']).subscribe(c=>{
         this.comment=c;
         console.log(this.comment);
       })
