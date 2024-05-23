@@ -36,8 +36,8 @@ export class HomeWallComponent {
   ngOnInit(): void {
     console.log('GroupListComponent');
   
-    this.http.get<Group[]>("https://test-sm.onrender.com/groups").subscribe(g=>this.groups=g);
-    this.http.get<Hobby[]>("https://test-sm.onrender.com/hobbies").subscribe(hobbies=>this.hobbies=hobbies);
-    this.http.get<Post[]>("https://test-sm.onrender.com/post").subscribe(posts=>this.posts=posts);
+    this.http.get<Group[]>("https://sm-render.onrender.com/groups").subscribe(g=>this.groups=g);
+    this.http.get<Hobby[]>("https://sm-render.onrender.com/hobbies").subscribe(hobbies=>this.hobbies=hobbies);
+    this.http.get<Post[]>("https://sm-render.onrender.com/post").subscribe(posts=>this.posts=posts);
   }
 }

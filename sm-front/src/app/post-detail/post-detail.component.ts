@@ -65,16 +65,16 @@ export class PostDetailComponent implements OnInit{
   loadPost() {
     
     this.activatedRoute.params.subscribe(params => {
-      this.http.get<Post>("https://test-sm.onrender.com/post/" +
+      this.http.get<Post>("https://sm-render.onrender.com/post/" +
       params['id']).subscribe(p => {this.post=p;
         console.log(this.post);
     });
 
-    this.http.get<Comment[]>("https://test-sm.onrender.com/post/"+params['id']+"/comments").subscribe(c=>this.comments=c);
-    this.http.get<Interaction[]>("https://test-sm.onrender.com/post/"+params['id']+"/interactions/likes").subscribe(i=>this.likes=i);
-    this.http.get<Interaction[]>("https://test-sm.onrender.com/post/"+params['id']+"/interactions/saves").subscribe(i=>this.saves=i);
-    this.http.get<User>('https://test-sm.onrender.com/user/account').subscribe( u => {this.currentUser = u;
-    this.http.get<Post[]>("https://test-sm.onrender.com/post/user/"+this.currentUser.id).subscribe(ps => {
+    this.http.get<Comment[]>("https://sm-render.onrender.com/post/"+params['id']+"/comments").subscribe(c=>this.comments=c);
+    this.http.get<Interaction[]>("https://sm-render.onrender.com/post/"+params['id']+"/interactions/likes").subscribe(i=>this.likes=i);
+    this.http.get<Interaction[]>("https://sm-render.onrender.com/post/"+params['id']+"/interactions/saves").subscribe(i=>this.saves=i);
+    this.http.get<User>('https://sm-render.onrender.com/user/account').subscribe( u => {this.currentUser = u;
+    this.http.get<Post[]>("https://sm-render.onrender.com/post/user/"+this.currentUser.id).subscribe(ps => {
       this.userPosts=ps;
     });
        
@@ -84,7 +84,7 @@ export class PostDetailComponent implements OnInit{
   }
 
   deletePost(postId: number){
-    const url = "https://test-sm.onrender.com/post/"+postId;
+    const url = "https://sm-render.onrender.com/post/"+postId;
     this.http.delete<Boolean>(url).subscribe(b => {
       console.log(b);
       this.router.navigate(['/posts']);
@@ -105,10 +105,10 @@ export class PostDetailComponent implements OnInit{
       date: date
     }
 
-   const url1 = 'https://test-sm.onrender.com/comment';
+   const url1 = 'https://sm-render.onrender.com/comment';
      
     this.http.post<Comment>(url1, commentToSave).subscribe(comment => {
-      const url2 = 'https://test-sm.onrender.com/post/'+this.post?.id+"/add-comment/"+comment?.id;
+      const url2 = 'https://sm-render.onrender.com/post/'+this.post?.id+"/add-comment/"+comment?.id;
       this.http.post<Post>(url2,this.post ).subscribe(p=> {
         console.log(p);
         this.commentForm.reset();
@@ -139,7 +139,7 @@ export class PostDetailComponent implements OnInit{
       date: date
     }
 
-    const urlLike = 'https://test-sm.onrender.com/post/'+this.post?.id+'/add-like/'+this.currentUser?.id;
+    const urlLike = 'https://sm-render.onrender.com/post/'+this.post?.id+'/add-like/'+this.currentUser?.id;
     this.http.post<Boolean>(urlLike,interactionToSave).subscribe(b => this.loadPost());
   }
 
@@ -159,7 +159,7 @@ export class PostDetailComponent implements OnInit{
       date: date
     }
 
-    const urlLike = 'https://test-sm.onrender.com/post/'+this.post?.id +'/add-save/'+this.currentUser?.id;
+    const urlLike = 'https://sm-render.onrender.com/post/'+this.post?.id +'/add-save/'+this.currentUser?.id;
     this.http.post<Boolean>(urlLike,interactionToSave).subscribe(b => this.loadPost());
   }
 

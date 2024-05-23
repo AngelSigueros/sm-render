@@ -41,21 +41,21 @@ export class PostListComponent implements OnInit {
 
   loadPosts() {
     forkJoin({
-      posts: this.http.get<Post[]>("https://test-sm.onrender.com/post"),
-      currentUser: this.http.get<User>('https://test-sm.onrender.com/user/account')
+      posts: this.http.get<Post[]>("https://sm-render.onrender.com/post"),
+      currentUser: this.http.get<User>('https://sm-render.onrender.com/user/account')
     }).subscribe(({ posts, currentUser }) => {
       this.posts = posts;
       this.numPosts=posts.length;
       this.currentUser = currentUser;
       this.inicializarLikesAndSaves();
-      this.http.get<Post[]>("https://test-sm.onrender.com/post/user/" + currentUser.id).subscribe(userPosts => {
+      this.http.get<Post[]>("https://sm-render.onrender.com/post/user/" + currentUser.id).subscribe(userPosts => {
         this.userPosts = userPosts;
       });
     });
   }
 
   deletePost(postId: number){
-    const url = "https://test-sm.onrender.com/post/"+postId;
+    const url = "https://sm-render.onrender.com/post/"+postId;
     this.http.delete<Boolean>(url).subscribe(b => {
       this.loadPosts();
     });
@@ -101,7 +101,7 @@ export class PostListComponent implements OnInit {
       date: date
     }
 
-    const urlLike = 'https://test-sm.onrender.com/post/'+postToLike?.id+'/add-like/'+this.currentUser?.id;
+    const urlLike = 'https://sm-render.onrender.com/post/'+postToLike?.id+'/add-like/'+this.currentUser?.id;
     this.http.post<Boolean>(urlLike,interactionToSave).subscribe(b => this.loadPosts());
   }
 
@@ -121,14 +121,14 @@ export class PostListComponent implements OnInit {
       date: date
     }
 
-    const urlLike = 'https://test-sm.onrender.com/post/'+postToSave?.id +'/add-save/'+this.currentUser?.id;
+    const urlLike = 'https://sm-render.onrender.com/post/'+postToSave?.id +'/add-save/'+this.currentUser?.id;
     this.http.post<Boolean>(urlLike,interactionToSave).subscribe(b => this.loadPosts());
   }
 
   inicializarLikesAndSaves(): void {
     const requests = this.posts.map(post => {
-      const likesRequest = this.http.get<Interaction[]>("https://test-sm.onrender.com/post/"+post.id+"/interactions/likes");
-      const savesRequest = this.http.get<Interaction[]>("https://test-sm.onrender.com/post/"+post.id+"/interactions/saves");
+      const likesRequest = this.http.get<Interaction[]>("https://sm-render.onrender.com/post/"+post.id+"/interactions/likes");
+      const savesRequest = this.http.get<Interaction[]>("https://sm-render.onrender.com/post/"+post.id+"/interactions/saves");
       return forkJoin([likesRequest, savesRequest]);
     });
   

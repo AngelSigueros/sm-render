@@ -38,7 +38,7 @@ isUpdate: boolean = false;
       if(!id) return;
       
 
-      this.httpClient.get<Group>('https://test-sm.onrender.com/groups/' + id).subscribe(group => {
+      this.httpClient.get<Group>('https://sm-render.onrender.com/groups/' + id).subscribe(group => {
         this.groupForm.reset(group);
         this.isUpdate = true;
         this.group = group;
@@ -71,10 +71,10 @@ isUpdate: boolean = false;
     }
 
     if (this.isUpdate) {
-      this.httpClient.put<Group>('https://test-sm.onrender.com/groups/' + this.group?.id, formData)
+      this.httpClient.put<Group>('https://sm-render.onrender.com/groups/' + this.group?.id, formData)
     .subscribe(group => this.navigateToList());
     } else {
-    this.httpClient.post<Group>('https://test-sm.onrender.com/groups/create', formData)
+    this.httpClient.post<Group>('https://sm-render.onrender.com/groups/create', formData)
     .subscribe(group=> this.navigateToList());
      }
   }

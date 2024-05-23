@@ -24,7 +24,7 @@ export class HobbyListComponent implements OnInit{
   ngOnInit(): void {
     console.log('HobbyListComponent');
 
-    this.http.get<Hobby[]>("https://test-sm.onrender.com/hobbies").subscribe(h=>this.hobbies=h);
+    this.http.get<Hobby[]>("https://sm-render.onrender.com/hobbies").subscribe(h=>this.hobbies=h);
   }
 }
 

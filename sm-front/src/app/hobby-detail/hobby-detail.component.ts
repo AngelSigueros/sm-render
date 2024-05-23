@@ -22,7 +22,7 @@ export class HobbyDetailComponent implements OnInit{
    console.log('HobbyDetailComponenet');
 
    this.activatedRoute.params.subscribe(params=> {
-    this.http.get<Hobby>("https://test-sm.onrender.com/hobbies/" + params['id']).subscribe(g=>{
+    this.http.get<Hobby>("https://sm-render.onrender.com/hobbies/" + params['id']).subscribe(g=>{
       this.hobby=g;
       console.log(this.hobby);
     })

@@ -31,11 +31,11 @@ export class UserListComponent implements OnInit {
   }
 
   loadUsers(){
-    this.http.get<User[]>("https://test-sm.onrender.com/user").subscribe(u=>this.users=u);
+    this.http.get<User[]>("https://sm-render.onrender.com/user").subscribe(u=>this.users=u);
   }
 
   deleteUser(userId: number){
-    const url = "https://test-sm.onrender.com/user/" + userId;
+    const url = "https://sm-render.onrender.com/user/" + userId;
     // this.http.delete<boolean>(url).subscribe(b => {
     //   this.loadUsers();
     // });

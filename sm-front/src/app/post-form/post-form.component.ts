@@ -50,15 +50,15 @@ export class PostFormComponent implements OnInit{
     private location:Location){}
 
   ngOnInit(): void {
-    //this.httpClient.get<Group[]>("https://test-sm.onrender.com/groups").subscribe(g=>this.groups=g);
-    this.httpClient.get<User>('https://test-sm.onrender.com/user/account').subscribe( u => {
+    //this.httpClient.get<Group[]>("https://sm-render.onrender.com/groups").subscribe(g=>this.groups=g);
+    this.httpClient.get<User>('https://sm-render.onrender.com/user/account').subscribe( u => {
       this.currentUser = u;
-      this.httpClient.get<Group[]>("https://test-sm.onrender.com/user/"+this.currentUser.id+"/groups").subscribe(g => this.groups=g);
+      this.httpClient.get<Group[]>("https://sm-render.onrender.com/user/"+this.currentUser.id+"/groups").subscribe(g => this.groups=g);
     });
     this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
       if (!id) return;
-      this.httpClient.get<Post>('https://test-sm.onrender.com/post/' + id).subscribe(post => {
+      this.httpClient.get<Post>('https://sm-render.onrender.com/post/' + id).subscribe(post => {
         this.postForm.reset(post);
         this.isUpdate = true;
         this.post = post;
@@ -138,7 +138,7 @@ export class PostFormComponent implements OnInit{
 
     
     
-    const url = 'https://test-sm.onrender.com/post';
+    const url = 'https://sm-render.onrender.com/post';
 
     if(this.isUpdate){
       this.httpClient.put<Post>(url+"/"+this.post?.id, formData).subscribe(post => 

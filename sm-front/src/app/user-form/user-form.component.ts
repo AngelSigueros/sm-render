@@ -58,7 +58,7 @@ export class UserFormComponent implements OnInit {
       console.log('id: '+ id);
       if (id) //return;
 
-      this.httpClient.get<User>('https://test-sm.onrender.com/user/'+id).subscribe(user => {
+      this.httpClient.get<User>('https://sm-render.onrender.com/user/'+id).subscribe(user => {
           //console.log(user);
           
           this.isUpdate = true;
@@ -124,7 +124,7 @@ export class UserFormComponent implements OnInit {
     console.log(this.userForm.value);
     
     if (this.isUpdate) {
-      const url = 'https://test-sm.onrender.com/user/account'; // + this.user?.id;
+      const url = 'https://sm-render.onrender.com/user/account'; // + this.user?.id;
       this.httpClient.put<User>(url, formData).subscribe({
         next: user => {
           this.router.navigate(['/users', user.id, 'detail']);
@@ -135,7 +135,7 @@ export class UserFormComponent implements OnInit {
         }
     });
     } else {
-      const url = 'https://test-sm.onrender.com/user/photo';
+      const url = 'https://sm-render.onrender.com/user/photo';
       this.httpClient.post<User>(url, formData).subscribe({
         next: user => {
           this.router.navigate(['/users', user.id, 'detail']);

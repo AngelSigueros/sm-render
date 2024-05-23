@@ -56,7 +56,7 @@ export class UserRegisterComponent {
 
     // enviar registro a backend
     this.httpClient
-      .post('https://test-sm.onrender.com/user/register', register)
+      .post('https://sm-render.onrender.com/user/register', register)
       .subscribe({
         next: (response) => {
           //limpiar el formulario o redirigir a pantalla de login

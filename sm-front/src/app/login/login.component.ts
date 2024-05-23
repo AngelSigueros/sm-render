@@ -26,7 +26,7 @@ export class LoginComponent {
     }
     console.log(login);
 
-    const url = 'https://test-sm.onrender.com/auth/login';
+    const url = 'https://sm-render.onrender.com/auth/login';
     this.httpClient.post<any>(url, login).subscribe(response => console.log(response));
 
 

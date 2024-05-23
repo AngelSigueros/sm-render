@@ -20,11 +20,11 @@
               {{post.content}}
             </h2>
             <div class="picsum-img-wrapper-center">
-              <img class="img-fluid" [src]="'https://test-sm.onrender.com/files/' + post.photoUrl" alt="{{post.id}}" />
+              <img class="img-fluid" [src]="'https://sm-render.onrender.com/files/' + post.photoUrl" alt="{{post.id}}" />
             </div>
             @if (post.user) {
               
-              <img src="https://test-sm.onrender.com/files/{{post.user.photoUrl}}" alt="avatar"
+              <img src="https://sm-render.onrender.com/files/{{post.user.photoUrl}}" alt="avatar"
                               class="rounded-circle img-fluid" style="width: 45px;">
                               <h5>Publicado por: {{post.user.firstName}}</h5>
             }
@@ -73,7 +73,7 @@
                     @for (group of groups; track group.id) {
                     <ng-template ngbSlide>
                       <div class="picsum-img-wrapper">
-                        <img class="img-fluid" [src]="'https://test-sm.onrender.com/files/' + group.photoUrl" alt="{{group.title}}" />
+                        <img class="img-fluid" [src]="'https://sm-render.onrender.com/files/' + group.photoUrl" alt="{{group.title}}" />
                       </div>
                       <div class="carousel-caption">
                         <h5 [routerLink]="['/groups', group.id, 'detail']" style="cursor:pointer;color:#15616D;background-color:white;font-weight:900;">{{group.title}}</h5>
@@ -98,7 +98,7 @@
                     @for (hobby of hobbies; track hobby.id) {
                     <ng-template ngbSlide>
                       <div class="picsum-img-wrapper">
-                        <img class="" [src]="'https://test-sm.onrender.com/files/' + hobby.photoUrl" alt="{{hobby.name}}" />
+                        <img class="" [src]="'https://sm-render.onrender.com/files/' + hobby.photoUrl" alt="{{hobby.name}}" />
                       </div>
                       <div class="carousel-caption">
                         <h5 [routerLink]="['/hobbies', hobby.id, 'detail']" style="cursor:pointer;color:#15616D;background-color:white;font-weight:900;">{{hobby.name}}</h5>
