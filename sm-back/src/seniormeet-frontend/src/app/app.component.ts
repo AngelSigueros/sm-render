@@ -13,7 +13,7 @@ import { AuthenticationService } from './user-authentication/authentication.serv
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Senior Meet';
+  title = 'Senior Meet Render';
   isLoggedIn = false;
   userEmail = '';
   isAdmin = false;

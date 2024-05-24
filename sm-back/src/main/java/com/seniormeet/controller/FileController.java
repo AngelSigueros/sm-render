@@ -4,6 +4,7 @@ import com.seniormeet.service.FileService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,8 @@ public class FileController {
     @GetMapping("files/{name:.+}")
     public ResponseEntity<Resource> getFile(@PathVariable String name) {
         Resource file = fileService.load(name);
-        return ResponseEntity.ok(file);
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(file);
     }
 }

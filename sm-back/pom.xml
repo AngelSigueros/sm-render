@@ -121,6 +121,25 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>default-copy-resources</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/classes/static</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/seniormeet-frontend/dist/senior-meet-frontend</directory>
+								</resource>
+								<resource>
+									<directory>src/main/resources/uploads</directory>
+									<targetPath>uploads</targetPath>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
 						<id>copy-frontend</id>
 						<phase>generate-resources</phase>
 						<goals>
@@ -138,7 +157,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -153,6 +171,16 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources/uploads</directory>
+				<targetPath>uploads</targetPath>
+			</resource>
+		</resources>
 	</build>
 
 </project>
