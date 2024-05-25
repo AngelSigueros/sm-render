@@ -120,25 +120,25 @@
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
-					<execution>
-						<id>default-copy-resources</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/classes/static</outputDirectory>
-							<resources>
-								<resource>
-									<directory>src/seniormeet-frontend/dist/senior-meet-frontend</directory>
-								</resource>
-								<resource>
-									<directory>src/main/resources/uploads</directory>
-									<targetPath>uploads</targetPath>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
+<!--					<execution>-->
+<!--						<id>default-copy-resources</id>-->
+<!--						<phase>generate-resources</phase>-->
+<!--						<goals>-->
+<!--							<goal>copy-resources</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<outputDirectory>${project.build.directory}/classes/static</outputDirectory>-->
+<!--							<resources>-->
+<!--								<resource>-->
+<!--									<directory>src/seniormeet-frontend/dist/senior-meet-frontend</directory>-->
+<!--								</resource>-->
+<!--								<resource>-->
+<!--									<directory>src/main/resources/uploads</directory>-->
+<!--									<targetPath>uploads</targetPath>-->
+<!--								</resource>-->
+<!--							</resources>-->
+<!--						</configuration>-->
+<!--					</execution>-->
 					<execution>
 						<id>copy-frontend</id>
 						<phase>generate-resources</phase>
@@ -177,8 +177,8 @@
 				<filtering>true</filtering>
 			</resource>
 			<resource>
-				<directory>src/main/resources/uploads</directory>
-				<targetPath>uploads</targetPath>
+				<directory>src/main/resources/static/uploads</directory>
+				<targetPath>src/main/resources/static/uploads</targetPath>
 			</resource>
 		</resources>
 	</build>

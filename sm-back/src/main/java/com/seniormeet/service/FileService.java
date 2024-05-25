@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,7 +24,7 @@ public class FileService {
 
         try {
             InputStream inputStream = file.getInputStream();
-            Path filePath = Paths.get("uploads").resolve(newFileName);
+            Path filePath = Paths.get("src/main/resources/static/uploads").resolve(newFileName);
             Files.copy(inputStream,filePath);
             return newFileName; // El nombre del archivo almacenado
         } catch (IOException e) {
@@ -35,14 +34,15 @@ public class FileService {
     }
 
     public Resource load(String name) {
-        Path file = Paths.get("uploads").resolve(name);
+        Path file = Paths.get("src/main/resources/static/uploads").resolve(name);
+        //ClassPathResource file = new ClassPathResource("uploads/" + name);
         try {
             Resource resource = new UrlResource(file.toUri());
             if(!resource.exists() || !resource.isReadable())
                 throw new FileException("Error al intentar cargar el archivo");
 
             return resource;
-        } catch (MalformedURLException e) {
+        } catch (IOException e) {
             throw new FileException("Error al intentar cargar el archivo");
         }
     }
